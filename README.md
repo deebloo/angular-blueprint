@@ -1,13 +1,31 @@
 Angular-Blueprint
 =================
 
-Angular js seed project based on John Papa's Angular style guide.
+Angular js seed project based on John Papa's Angular style guide and the Yeoman Angular generator.
 
-https://github.com/johnpapa/angularjs-styleguide
+Style Guide: https://github.com/johnpapa/angularjs-styleguide
+Angular Generator: https://github.com/yeoman/generator-angular
 
-To use this seed
-```
+To use this seed:
+
+Download the seed
+```shell
 git clone https://github.com/DannyBlueDesign/angular-blueprint.git <project-name>
 cd <project-name>
 rm -rf .git
+```
+
+To start the development server
+```shell
+grunt serve
+```
+
+To run unit tests
+```shell
+grunt test
+```
+
+To build app for deployment
+```shell
+grunt build
 ```
