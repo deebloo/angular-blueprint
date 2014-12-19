@@ -12,7 +12,7 @@
     .module('myApp')
     .controller('NavBarCtrl', NavBarCtrl);
 
-  function NavBarCtrl(isActive, $location) {
+  function NavBarCtrl(isActive) {
     var vm = this;
 
     vm.isActive = isActive;

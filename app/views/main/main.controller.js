@@ -12,7 +12,7 @@
     .module('myApp')
     .controller('MainCtrl', MainCtrl);
 
-  function MainCtrl($http) {
+  function MainCtrl() {
     var vm = this;
 
     vm.awesomeThings = [
