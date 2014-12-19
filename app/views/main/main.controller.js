@@ -12,13 +12,21 @@
     .module('myApp')
     .controller('MainCtrl', MainCtrl);
 
-  function MainCtrl() {
+  function MainCtrl($http) {
     var vm = this;
 
-    vm.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    vm.user = {};
+
+    $http.get('/api/users/octokit')
+      .success(getUserSuccess)
+      .error(getUserError);
+
+    function getUserSuccess(user) {
+      vm.user = user;
+    }
+
+    function getUserError() {
+
+    }
   }
 }());

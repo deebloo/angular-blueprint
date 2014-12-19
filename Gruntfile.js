@@ -68,21 +68,32 @@ module.exports = function (grunt) {
     connect: {
       options: {
         port: 9000,
-        // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
+      // Proxy setup for hitting outside APIs
+      // I KNOW I KNOW github doesn't require this! just for example
+      proxies: [
+        {
+          context: '/api',
+          host: 'api.github.com',
+          port: 443,
+          https: true,
+          changeOrigin: true,
+          rewrite: {
+            '^/api': ''
+          }
+        }
+      ],
       livereload: {
         options: {
           open: true,
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
+              connect().use('/bower_components', connect.static('./bower_components')),
+              connect.static(appConfig.app),
+              require('grunt-connect-proxy/lib/utils').proxyRequest // FOR PROXY
             ];
           }
         }
@@ -400,6 +411,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'configureProxies:server', // FOR PROXY
       'wiredep',
       'concurrent:server',
       'autoprefixer',
