@@ -2,6 +2,7 @@ Angular-Blueprint
 =================
 
 Angular js seed project based on John Papa's Angular style guide and the Yeoman Angular generator.
+Seed includes https://github.com/drewzboto/grunt-connect-proxy to hit outside APIs for development. The proxy is set up for the github API right now but can can be configured easily to hit your own api. (Yes I know githubs api does not require this!). 
 
 Style Guide: https://github.com/johnpapa/angularjs-styleguide  
 Angular Generator: https://github.com/yeoman/generator-angular  
