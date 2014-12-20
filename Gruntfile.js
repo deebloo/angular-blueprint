@@ -15,10 +15,21 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  // Configurable paths for the application
+  // Configurable application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    proxy: true, // Whether or not the proxy should be turned on
+    proxyConfig: [{
+      context: '/api',
+      host: 'api.github.com',
+      port: 443,
+      https: true,
+      changeOrigin: true,
+      rewrite: {
+        '^/api': ''
+      }
+    }]
   };
 
   // Define the configuration for all the tasks
@@ -72,20 +83,7 @@ module.exports = function (grunt) {
         hostname: '0.0.0.0',
         livereload: 35729
       },
-      // Proxy setup for hitting outside APIs
-      // I KNOW I KNOW github doesn't require this! just for example
-      proxies: [
-        {
-          context: '/api',
-          host: 'api.github.com',
-          port: 443,
-          https: true,
-          changeOrigin: true,
-          rewrite: {
-            '^/api': ''
-          }
-        }
-      ],
+      proxies: appConfig.proxy ? appConfig.proxyConfig : [],
       livereload: {
         options: {
           open: true,
@@ -94,7 +92,7 @@ module.exports = function (grunt) {
               connect.static('.tmp'),
               connect().use('/bower_components', connect.static('./bower_components')),
               connect.static(appConfig.app),
-              require('grunt-connect-proxy/lib/utils').proxyRequest // FOR PROXY
+              (appConfig.proxy ? require('grunt-connect-proxy/lib/utils').proxyRequest : null)
             ];
           }
         }
@@ -406,19 +404,24 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
-    }
-
-    grunt.task.run([
+    var tasks = [
       'clean:server',
-      'configureProxies:server', // FOR PROXY
       'wiredep',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
       'watch'
-    ]);
+    ];
+
+    if (target === 'dist') {
+      return grunt.task.run(['build', 'connect:dist:keepalive']);
+    }
+
+    if(appConfig.proxy) {
+      tasks.unshift('configureProxies:server');
+    }
+
+    grunt.task.run(tasks);
   });
 
   grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
