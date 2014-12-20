@@ -1,4 +1,3 @@
-// Generated on 2014-12-18 using generator-angular 0.10.0
 'use strict';
 
 // # Globbing
@@ -368,6 +367,10 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= appSettings.dist %>'
+        }, {
+          expand: true,
+          src: 'server',
+          dest: '<%= appSettings.dist %>'
         }]
       },
       styles: {
@@ -396,7 +399,7 @@ module.exports = function (grunt) {
     // Test settings
     karma: {
       unit: {
-        configFile: 'test/karma.conf.js',
+        configFile: 'client/test/karma.conf.js',
         singleRun: true
       }
     }
