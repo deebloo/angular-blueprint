@@ -7,16 +7,9 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
-
-  // Load grunt tasks automatically
-  require('load-grunt-tasks')(grunt);
-
-  // Time how long tasks take. Can help when optimizing build times
-  require('time-grunt')(grunt);
-
   // Configurable application
   var appConfig = {
-    app: require('./bower.json').appPath || 'app',
+    app: require('./bower.json').appPath || 'client',
     dist: 'dist',
     proxy: false, // Whether or not the proxy should be turned on
     proxyConfig: [{
@@ -30,6 +23,12 @@ module.exports = function (grunt) {
       }
     }]
   };
+
+  // Load grunt tasks automatically
+  require('load-grunt-tasks')(grunt);
+
+  // Time how long tasks take. Can help when optimizing build times
+  require('time-grunt')(grunt);
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -45,10 +44,10 @@ module.exports = function (grunt) {
       },
       js: {
         files: [
-          '<%= appSettings.app %>/*.js',
-          '<%= appSettings.app %>/components/**/{,*/}*.js',
-          '<%= appSettings.app %>/views/**/*.js',
-          '<%= appSettings.app %>/services/{,*/}*.js'
+          '<%= appSettings.app %>/app/*.js',
+          '<%= appSettings.app %>/app/components/**/{,*/}*.js',
+          '<%= appSettings.app %>/app/views/**/*.js',
+          '<%= appSettings.app %>/app/services/{,*/}*.js'
         ],
         tasks: ['newer:jshint:all'],
         options: {
@@ -56,11 +55,11 @@ module.exports = function (grunt) {
         }
       },
       jsTest: {
-        files: ['test/spec/{,*/}*.js'],
+        files: ['<%= appSettings.app %>/test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
       compass: {
-        files: ['<%= appSettings.app %>/styles/*.scss', '<%= appSettings.app %>/views/**/*.scss'],
+        files: ['<%= appSettings.app %>/styles/*.scss', '<%= appSettings.app %>/app/views/**/*.scss'],
         tasks: ['compass:server', 'autoprefixer']
       },
       gruntfile: {
@@ -140,16 +139,16 @@ module.exports = function (grunt) {
         src: [
           'Gruntfile.js',
           '<%= appSettings.app %>/{,*/}*.js',
-          '<%= appSettings.app %>/components**/{,*/}*.js',
-          '<%= appSettings.app %>/services/{,*/}*.js',
-          '<%= appSettings.app %>/views/**/{,*/}*.js'
+          '<%= appSettings.app %>/app/components**/{,*/}*.js',
+          '<%= appSettings.app %>/app/services/{,*/}*.js',
+          '<%= appSettings.app %>/app/views/**/{,*/}*.js'
         ]
       },
       test: {
         options: {
-          jshintrc: 'test/.jshintrc'
+          jshintrc: '<%= appSettings.app %>/test/.jshintrc'
         },
-        src: ['test/spec/{,*/}*.js']
+        src: ['<%= appSettings.app %>/test/spec/{,*/}*.js']
       }
     },
 
@@ -190,7 +189,7 @@ module.exports = function (grunt) {
         ignorePath:  /\.\.\//
       },
       sass: {
-        src: ['<%= appSettings.app %>/styles/*.scss', '<%= appSettings.app %>/views/**/*.scss'],
+        src: ['<%= appSettings.app %>/styles/*.scss', '<%= appSettings.app %>/app/views/**/*.scss'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     },
@@ -198,11 +197,10 @@ module.exports = function (grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
-        sassDir: '<%= appSettings.app %>',
+        sassDir: 'client',
         cssDir: '.tmp',
         generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= appSettings.app %>/images',
-        javascriptsDir: '<%= appSettings.app %>/scripts',
         fontsDir: '<%= appSettings.app %>/styles/fonts',
         importPath: './bower_components',
         httpImagesPath: '/images',
@@ -362,8 +360,8 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            'views/{,*/}*.html',
-            'components/{,*/}*.html',
+            'app/views/{,*/}*.html',
+            'app/components/{,*/}*.html',
             'images/{,*/}*.{webp}',
             'fonts/{,*/}*.*'
           ]
@@ -409,7 +407,7 @@ module.exports = function (grunt) {
     // Test settings
     karma: {
       unit: {
-        configFile: 'client/test/karma.conf.js',
+        configFile: '<%= appSettings.app %>/test/karma.conf.js',
         singleRun: true
       }
     }
