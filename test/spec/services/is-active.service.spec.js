@@ -6,26 +6,26 @@ describe('Service: isActive', function () {
   beforeEach(module('myApp'));
 
   // instantiate service
-  var isActive, location;
+  var isActive, $location;
 
-  beforeEach(inject(function (_isActive_, $location) {
-    location = $location;
+  beforeEach(inject(function ($injector) {
+    $location = $injector.get('$location');
 
-    isActive = _isActive_;
+    isActive = $injector.get('isActive');
   }));
 
   it('isActive should return true', function() {
-    location.path('/');
+    $location.path('/');
 
     expect(isActive('/' , '/test')).toBe(true);
 
-    location.path('/test');
+    $location.path('/test');
 
     expect(isActive('/' , '/test')).toBe(true);
   });
 
   it('isActive should return false', function() {
-    location.path('/');
+    $location.path('/');
 
     expect(isActive('/test')).toBe(false);
   });

@@ -8,8 +8,8 @@ describe('Controller: AboutCtrl', function () {
   var AboutCtrl;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller) {
-    AboutCtrl = $controller('AboutCtrl');
+  beforeEach(inject(function ($injector) {
+    AboutCtrl = $injector.get('$controller')('AboutCtrl');
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
