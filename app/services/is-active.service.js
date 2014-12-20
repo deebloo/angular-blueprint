@@ -13,7 +13,6 @@
     .module('myApp')
     .factory('isActive', isActive);
 
-
   function isActive($location) {
     return checkActive;
 

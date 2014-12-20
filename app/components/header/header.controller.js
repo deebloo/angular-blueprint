@@ -8,6 +8,7 @@
  * Controller of the myApp
  */
 (function() {
+
   angular
     .module('myApp')
     .controller('NavBarCtrl', NavBarCtrl);
@@ -17,4 +18,5 @@
 
     vm.isActive = isActive;
   }
+
 }());

@@ -8,12 +8,12 @@ describe('Controller: MainCtrl', function () {
   var main, $http;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $httpBackend) {
-    $http = $httpBackend;
+  beforeEach(inject(function ($injector) {
+    $http = $injector.get('$httpBackend');
 
-    main = $controller('MainCtrl');
+    main = $injector.get('$controller')('MainCtrl');
 
-    $httpBackend
+    $http
       .when('GET', '/api/users/octokit')
       .respond({ login: 'octokit' });
   }));
@@ -23,4 +23,5 @@ describe('Controller: MainCtrl', function () {
 
     expect(main.user.login).toBe('octokit');
   });
+
 });
