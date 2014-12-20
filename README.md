@@ -35,12 +35,12 @@ To build app for deployment
 grunt build
 ```
 
-Angular Blueprint has proxying turned on by default. To turn it off set ```appConfig.proxy = false```
+Angular Blueprint has a switch for proxying API's. To turn it on set ```appConfig.proxy = true```
 ```JS
 var appConfig = {
   app: require('./bower.json').appPath || 'app',
   dist: 'dist',
-  proxy: true, // <-- HERE HERE DO IT HERE!!!
+  proxy: false, // <-- HERE HERE DO IT HERE!!!
   proxyConfig: [{
     context: '/api',
     host: 'api.github.com',
