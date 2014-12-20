@@ -8,6 +8,7 @@
  * Factory in the myApp.
  */
 (function() {
+
   angular
     .module('myApp')
     .factory('isActive', isActive);
@@ -35,4 +36,5 @@
       return isActive;
     }
   }
+
 }());

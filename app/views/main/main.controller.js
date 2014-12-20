@@ -8,6 +8,7 @@
  * Controller of the myApp
  */
 (function() {
+
   angular
     .module('myApp')
     .controller('MainCtrl', MainCtrl);
@@ -30,4 +31,5 @@
       console.log(error);
     }
   }
+
 }());

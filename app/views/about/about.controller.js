@@ -8,6 +8,7 @@
  * Controller of the myApp
  */
 (function() {
+
   angular
     .module('myApp')
     .controller('AboutCtrl', AboutCtrl);
@@ -21,4 +22,5 @@
       'Karma'
     ];
   }
+
 }());
