@@ -44,7 +44,12 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= appSettings.app %>/*.js','<%= appSettings.app %>/components/**/{,*/}*.js', '<%= appSettings.app %>/views/**/*.js', '<%= appSettings.app %>/services/{,*/}*.js'],
+        files: [
+          '<%= appSettings.app %>/*.js',
+          '<%= appSettings.app %>/components/**/{,*/}*.js',
+          '<%= appSettings.app %>/views/**/*.js',
+          '<%= appSettings.app %>/services/{,*/}*.js'
+        ],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
