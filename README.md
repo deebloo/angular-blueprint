@@ -14,7 +14,7 @@ Download the seed
 git clone https://github.com/DannyBlueDesign/angular-blueprint.git <project-name>
 cd <project-name>
 bower install && npm install
-rm -rf .git
+OPTIONAL (Remove git history )rm -rf .git
 ```
 
 To start the development server
