@@ -2,7 +2,7 @@ Angular-Blueprint
 =================
 
 ***
-!Requires Sass and Compass
+! Requires Node, Grunt, Bower, Sass and Compass
 ***
 
 Angular js seed project based on John Papa's Angular style guide and the Yeoman Angular generator. The goal is to have an out of the box scaffolding that will scale well for large complex applications. I am looking for input and opinions to make this as good as we possibly can.
