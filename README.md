@@ -8,8 +8,6 @@ Seed includes https://github.com/drewzboto/grunt-connect-proxy to hit outside AP
 Style Guide: https://github.com/johnpapa/angularjs-styleguide  
 Angular Generator: https://github.com/yeoman/generator-angular  
 
-To use this seed:
-
 Download the seed
 ```bash
 git clone https://github.com/DannyBlueDesign/angular-blueprint.git <project-name>
