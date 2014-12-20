@@ -17,7 +17,8 @@
 
     vm.user = {};
 
-    $http.get('/api/users/octokit')
+    $http
+      .get('/api/users/octokit')
       .success(getUserSuccess)
       .error(getUserError);
 
@@ -25,8 +26,8 @@
       vm.user = user;
     }
 
-    function getUserError() {
-
+    function getUserError(error) {
+      console.log(error);
     }
   }
 }());
