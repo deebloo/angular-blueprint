@@ -15,7 +15,7 @@ Download the seed
 git clone https://github.com/DannyBlueDesign/angular-blueprint.git <project-name>
 cd <project-name>
 bower install && npm install
-OPTIONAL (Remove git history )rm -rf .git
+OPTIONAL (Remove git history ) rm -rf .git
 ```
 
 To start the development server
@@ -33,7 +33,7 @@ To build app for deployment
 grunt build
 ```
 
-Angular Blueprint has proxying turned on by default. To turn it off set ```appConfig.proxy = false```
+Angular Blueprint has proxying turned on by default. To turn it off set ```JS appConfig.proxy = false ```
 ```JS
 var appConfig = {
   app: require('./bower.json').appPath || 'app',
