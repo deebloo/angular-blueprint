@@ -18,7 +18,7 @@ module.exports = function (grunt) {
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
     dist: 'dist',
-    proxy: true, // Whether or not the proxy should be turned on
+    proxy: false, // Whether or not the proxy should be turned on
     proxyConfig: [{
       context: '/api',
       host: 'api.github.com',
@@ -87,12 +87,17 @@ module.exports = function (grunt) {
         options: {
           open: true,
           middleware: function (connect) {
-            return [
+            var middleware = [
               connect.static('.tmp'),
               connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(appConfig.app),
-              (appConfig.proxy ? require('grunt-connect-proxy/lib/utils').proxyRequest : null)
+              connect.static(appConfig.app)
             ];
+
+            if(appConfig.proxy) {
+              middleware.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+            }
+
+            return middleware;
           }
         }
       },
