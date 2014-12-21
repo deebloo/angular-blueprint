@@ -25,6 +25,7 @@ angular
     $stateProvider
       // The entry point to the application.
       // Each of state should extend off of this main state
+      // This allows you to have multiple root templates if you application has multiple different sections
       .state('main', {
         url: '',
         templateUrl: 'app/views/main/main.html',
