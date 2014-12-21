@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="styles/app.css">
     <link rel="stylesheet" href="app/views/about/about.css">
     <link rel="stylesheet" href="app/views/main/main.css">
+    <link rel="stylesheet" href="app/views/home/home.css">
     <!-- endbuild -->
   </head>
 
@@ -29,15 +30,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container">
-      <div ng-include="'app/components/header/header.html'"></div>
-
-      <div ui-view></div>
-
-      <div ng-include="'app/components/footer/footer.html'"></div>
-    </div>
-
+    <div ui-view></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -77,6 +70,7 @@
     <script src="app.js"></script>
     <script src="app/views/main/main.controller.js"></script>
     <script src="app/views/about/about.controller.js"></script>
+    <script src="app/views/home/home.controller.js"></script>
     <script src="app/components/header/header.controller.js"></script>
     <script src="app/services/is-active.service.js"></script>
     <!-- endbuild -->
