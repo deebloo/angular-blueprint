@@ -20,9 +20,9 @@ angular
     'ngTouch'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
-
     $urlRouterProvider.when('', '/');
+
+    $urlRouterProvider.otherwise('/');
 
     $stateProvider
       // The entry point to the application.
