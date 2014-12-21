@@ -22,6 +22,8 @@ angular
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 
+    $urlRouterProvider.when('', '/');
+
     $stateProvider
       // The entry point to the application.
       // Each of state should extend off of this main state.
