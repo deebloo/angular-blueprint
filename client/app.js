@@ -23,6 +23,8 @@ angular
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
+      // The entry point to the application.
+      // Each of state should extend off of this main state
       .state('main', {
         url: '',
         templateUrl: 'app/views/main/main.html',
