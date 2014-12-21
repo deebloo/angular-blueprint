@@ -13,10 +13,6 @@
     .module('myApp')
     .controller('HomeCtrl', HomeCtrl);
 
-  function HomeCtrl() {
-    var vm = this;
-
-    vm.user = { username: 'USER'};
-  }
+  function HomeCtrl() { }
 
 }());
