@@ -20,9 +20,9 @@ angular
     'ngTouch'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.when('', '/');
+    $urlRouterProvider.when('', '/'); // redirect to root if the state is ''
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/'); // redirect to root if state is not found
 
     $stateProvider
       // The entry point to the application.
