@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * @ngdoc service
- * @name myApp.isActive
+ * @ngdoc factory
+ * @name isActive
  * @description
  * # isActive
  * Factory in the myApp.
@@ -19,6 +19,7 @@
     /**
      * @name Check Active
      * @returns {boolean}
+     * @memberof isActive
      */
     function checkActive() {
       var links    = arguments,

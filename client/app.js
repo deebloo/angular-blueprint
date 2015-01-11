@@ -1,10 +1,8 @@
 'use strict';
 
 /**
- * @ngdoc overview
- * @name myApp
+ * @module myApp
  * @description
- * # myApp
  *
  * Main module of the application.
  */

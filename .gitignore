@@ -4,3 +4,6 @@ dist
 .sass-cache
 bower_components
 .idea
+doc/client
+.DS_Store
+._.DS_Store
