@@ -67,7 +67,7 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= appSettings.app %>/styles/*.scss', '<%= appSettings.app %>/app/views/**/*.scss'],
-        tasks: ['compass:server', 'autoprefixer']
+        tasks: ['compass:server', 'autoprefixer', 'injector:sass']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -238,6 +238,68 @@ module.exports = function (grunt) {
         src: ['<%= appSettings.app %>/styles/*.scss', '<%= appSettings.app %>/app/views/**/*.scss'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
+    },
+
+    injector: {
+      options: {
+
+      },
+      // Inject application script files into index.html (doesn't include bower)
+      //scripts: {
+      //  options: {
+      //    transform: function(filePath) {
+      //      filePath = filePath.replace('/client/', '');
+      //      filePath = filePath.replace('/.tmp/', '');
+      //      return '<script src="' + filePath + '"></script>';
+      //    },
+      //    starttag: '<!-- injector:js -->',
+      //    endtag: '<!-- endinjector -->'
+      //  },
+      //  files: {
+      //    '<%= yeoman.client %>/index.html': [
+      //      ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
+      //        '!{.tmp,<%= yeoman.client %>}/app/app.js',
+      //        '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
+      //        '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
+      //    ]
+      //  }
+      //},
+
+      // Inject component scss into app.scss
+      sass: {
+        options: {
+          transform: function(filePath) {
+            filePath = filePath.replace('/client', '..');
+
+            return '@import \'' + filePath + '\';';
+          },
+          starttag: '// injector',
+          endtag: '// endinjector'
+        },
+        files: {
+          '<%= appSettings.app %>/styles/app.scss': [
+            '<%= appSettings.app %>/{app/views, app/components}/**/*.{scss,sass}'
+          ]
+        }
+      }
+
+      // Inject component css into index.html
+      //css: {
+      //  options: {
+      //    transform: function(filePath) {
+      //      filePath = filePath.replace('/client/', '');
+      //      filePath = filePath.replace('/.tmp/', '');
+      //      return '<link rel="stylesheet" href="' + filePath + '">';
+      //    },
+      //    starttag: '<!-- injector:css -->',
+      //    endtag: '<!-- endinjector -->'
+      //  },
+      //  files: {
+      //    '<%= yeoman.client %>/index.html': [
+      //      '<%= yeoman.client %>/{app,components}/**/*.css'
+      //    ]
+      //  }
+      //}
     },
 
     /**
@@ -499,6 +561,7 @@ module.exports = function (grunt) {
     var tasks = [
       'clean:server',
       'wiredep',
+      'injector:sass',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -514,6 +577,10 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run(tasks);
+  });
+
+  grunt.registerTask('foo', function() {
+    grunt.log.write('test');
   });
 
   grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {

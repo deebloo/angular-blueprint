@@ -1,6 +1,3 @@
-// bower:scss
-// endbower
-
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -81,6 +78,8 @@ body {
   }
 }
 
-@import "../app/views/main/main";
-@import "../app/views/about/about";
-@import "../app/views/home/home";
+// injector
+@import '../app/views/about/about.scss';
+@import '../app/views/home/home.scss';
+@import '../app/views/main/main.scss';
+// endinjector
