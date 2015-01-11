@@ -248,7 +248,7 @@ module.exports = function (grunt) {
       scripts: {
         options: {
           transform: function(filePath) {
-            filePath = filePath.replace('/client', '..');
+            filePath = filePath.replace('/client/', '');
 
             return '<script src="' + filePath + '"></script>';
           },
