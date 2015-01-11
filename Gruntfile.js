@@ -247,7 +247,16 @@ module.exports = function (grunt) {
     compass: {
       options: {
         sassDir: 'client/styles',
-        sourcemap: true,
+        sourcemap: (function() {
+          var sourcemap = grunt.option('sourcemap');
+
+          if(sourcemap !== undefined) {
+            return sourcemap
+          }
+          else {
+            return true;
+          }
+        }()),
         cssDir: '.tmp',
         generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= appSettings.app %>/images',
