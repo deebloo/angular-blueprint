@@ -56,7 +56,7 @@ module.exports = function (grunt) {
           '<%= appSettings.app %>/app/views/**/*.js',
           '<%= appSettings.app %>/app/services/{,*/}*.js'
         ],
-        tasks: ['newer:jshint:all'],
+        tasks: ['newer:jshint:all', 'injector:scripts'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -244,26 +244,24 @@ module.exports = function (grunt) {
       options: {
 
       },
-      // Inject application script files into index.html (doesn't include bower)
-      //scripts: {
-      //  options: {
-      //    transform: function(filePath) {
-      //      filePath = filePath.replace('/client/', '');
-      //      filePath = filePath.replace('/.tmp/', '');
-      //      return '<script src="' + filePath + '"></script>';
-      //    },
-      //    starttag: '<!-- injector:js -->',
-      //    endtag: '<!-- endinjector -->'
-      //  },
-      //  files: {
-      //    '<%= yeoman.client %>/index.html': [
-      //      ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
-      //        '!{.tmp,<%= yeoman.client %>}/app/app.js',
-      //        '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
-      //        '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
-      //    ]
-      //  }
-      //},
+      //Inject application script files into index.html (doesn't include bower)
+      scripts: {
+        options: {
+          transform: function(filePath) {
+            filePath = filePath.replace('/client', '..');
+
+            return '<script src="' + filePath + '"></script>';
+          },
+          starttag: '<!-- injector:js -->',
+          endtag: '<!-- endinjector -->'
+        },
+        files: {
+          '<%= appSettings.app %>/index.html': [
+            '<%= appSettings.app %>/app/{views,components}/**/*.js',
+            '<%= appSettings.app %>/app/services/*.js'
+          ]
+        }
+      },
 
       // Inject component scss into app.scss
       sass: {
@@ -562,6 +560,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'injector:sass',
+      'injector:scripts',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',

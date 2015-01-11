@@ -64,16 +64,17 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,client}) scripts/scripts.js -->
+
     <script src="app.js"></script>
 
-    <!-- Controllers -->
-    <script src="app/views/application/application.controller.js"></script>
-    <script src="app/views/main/main.controller.js"></script>
-    <script src="app/views/about/about.controller.js"></script>
-    <script src="app/views/home/home.controller.js"></script>
+    <!-- injector:js -->
+    <script src="../app/views/about/about.controller.js"></script>
+    <script src="../app/views/application/application.controller.js"></script>
+    <script src="../app/views/home/home.controller.js"></script>
+    <script src="../app/views/main/main.controller.js"></script>
+    <script src="../app/services/is-active.service.js"></script>
+    <!-- endinjector -->
 
-    <!-- Services -->
-    <script src="app/services/is-active.service.js"></script>
     <!-- endbuild -->
   </body>
 </html>
