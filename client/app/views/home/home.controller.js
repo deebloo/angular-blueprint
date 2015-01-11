@@ -1,10 +1,9 @@
 'use strict';
 
 /**
- * @ngdoc function
- * @name myApp.controller:HomeCtrl
+ * @ngdoc controller
+ * @name HomeCtrl
  * @description
- * # HomeCtrl
  * Controller of the myApp
  */
 (function() {

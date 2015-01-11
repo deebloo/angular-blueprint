@@ -1,10 +1,9 @@
 'use strict';
 
 /**
- * @ngdoc function
- * @name myApp.controller:AboutCtrl
+ * @ngdoc controller
+ * @name AboutCtrl
  * @description
- * # AboutCtrl
  * Controller of the myApp
  */
 (function() {
@@ -16,6 +15,12 @@
   function AboutCtrl() {
     var vm = this;
 
+    /**
+    * @description
+    * A list of awesome things.
+    * @type string[]
+    * @memberof AboutCtrl
+    */ 
     vm.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
