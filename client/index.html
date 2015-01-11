@@ -1,9 +1,9 @@
 <!doctype html>
-<html class="no-js" ng-app="myApp">
+<html class="no-js" ng-app="myApp" ng-controller="ApplicationCtrl as app">
   <head>
     <meta charset="utf-8">
 
-    <title ng-model="app.title">My App</title>
+    <title ng-bind="app.title">My App</title>
 
     <meta name="description" content="">
 
@@ -65,7 +65,9 @@
 
     <!-- build:js({.tmp,client}) scripts/scripts.js -->
     <script src="app.js"></script>
+
     <!-- Controllers -->
+    <script src="app/views/application/application.controller.js"></script>
     <script src="app/views/main/main.controller.js"></script>
     <script src="app/views/about/about.controller.js"></script>
     <script src="app/views/home/home.controller.js"></script>
