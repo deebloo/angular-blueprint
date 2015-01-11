@@ -165,9 +165,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description 
+    * @description
     * Creates JSDoc-style documentation based on comments. Folder doc/template has customization options.
-    * 
+    *
     * @see {@link http://usejsdoc.org}
     * @see {@link https://github.com/allenhwkim/angular-jsdoc}
     */
@@ -246,7 +246,7 @@ module.exports = function (grunt) {
     */
     compass: {
       options: {
-        sassDir: 'client',
+        sassDir: 'client/styles',
         cssDir: '.tmp',
         generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= appSettings.app %>/images',

@@ -80,3 +80,7 @@ body {
     border-bottom: 0;
   }
 }
+
+@import "../app/views/main/main";
+@import "../app/views/about/about";
+@import "../app/views/home/home";

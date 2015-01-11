@@ -12,10 +12,12 @@
     .module('myApp')
     .controller('MainCtrl', MainCtrl);
 
-  function MainCtrl() {
+  function MainCtrl(isActive) {
     var vm = this;
 
     vm.user = { username: 'USER'};
+
+    vm.isActive = isActive;
   }
 
 }());

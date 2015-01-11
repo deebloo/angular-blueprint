@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>{{app.title || 'My App'}}</title>
+    <title ng-model="app.title">My App</title>
 
     <meta name="description" content="">
 
@@ -18,10 +18,7 @@
     <!-- endbuild -->
 
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/app.css">
-    <link rel="stylesheet" href="app/views/about/about.css">
-    <link rel="stylesheet" href="app/views/main/main.css">
-    <link rel="stylesheet" href="app/views/home/home.css">
+    <link rel="stylesheet" href="app.css">
     <!-- endbuild -->
   </head>
 
@@ -68,10 +65,12 @@
 
     <!-- build:js({.tmp,client}) scripts/scripts.js -->
     <script src="app.js"></script>
+    <!-- Controllers -->
     <script src="app/views/main/main.controller.js"></script>
     <script src="app/views/about/about.controller.js"></script>
     <script src="app/views/home/home.controller.js"></script>
-    <script src="app/components/header/header.controller.js"></script>
+
+    <!-- Services -->
     <script src="app/services/is-active.service.js"></script>
     <!-- endbuild -->
   </body>
