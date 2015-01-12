@@ -58,3 +58,8 @@ var appConfig = {
   }]
 };
 ```
+
+If you are using the JSDOCs style of comments (which you should!!!) you can generate your automated JSDOCs by running the following command. (Horay for automated documentation)
+```JS
+grunt jsdoc
+```
