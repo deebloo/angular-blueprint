@@ -24,11 +24,10 @@ To start the development server
 ```bash
 grunt serve
 ```
-Serve Options
 
 Start server with no sass source mapping (may compile faster)
 ```bash
---sourcemap=false
+grunt serve --sourcemap=false
 ```
 
 To run unit tests
