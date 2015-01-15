@@ -66,7 +66,12 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       compass: {
-        files: ['<%= appSettings.app %>/styles/*.scss', '<%= appSettings.app %>/app/views/**/*.scss'],
+        files: [
+          '<%= appSettings.app %>/styles/*.scss',
+          '<%= appSettings.app %>/app/views/**/*.scss',
+          '<%= appSettings.app %>/app/components/**/*.scss',
+          '<%= appSettings.app %>/sass-includes/*.scss'
+        ],
         tasks: ['compass:server', 'autoprefixer', 'injector:sass']
       },
       gruntfile: {
@@ -218,9 +223,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '.tmp/styles/',
+          cwd: '.tmp',
           src: '{,*/}*.css',
-          dest: '.tmp/styles/'
+          dest: '.tmp'
         }]
       }
     },
