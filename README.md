@@ -44,6 +44,7 @@ grunt jsdoc
 ##Command Line Options
 Disable Source Maps
 > --sourcemap=false
+
 Compress CSS Output
 > --output-style=compressed
 
