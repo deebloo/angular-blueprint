@@ -65,14 +65,14 @@ module.exports = function (grunt) {
         files: ['<%= appSettings.app %>/test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      compass: {
+      sass: {
         files: [
           '<%= appSettings.app %>/styles/*.scss',
           '<%= appSettings.app %>/app/views/**/*.scss',
           '<%= appSettings.app %>/app/components/**/*.scss',
           '<%= appSettings.app %>/sass-includes/*.scss'
         ],
-        tasks: ['compass:server', 'autoprefixer', 'injector:sass']
+        tasks: ['autoprefixer', 'injector:sass','sass']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -290,40 +290,33 @@ module.exports = function (grunt) {
     /**
     * @description
     * Compiles Sass to CSS and generates necessary files if requested
+    * @property {String} [outputStyle] - nested or compressed default value is nested
     */
-    compass: {
+    sass: {
       options: {
-        sassDir: 'client/styles',
-        sourcemap: (function() {
+        imagePath: '<%= appSettings.app %>/images',
+        outputStyle: (function() {
+          var outputStyle = grunt.option('output-style');
+          if(outputStyle !== undefined) {
+            return outputStyle;
+          }
+          else {
+            return 'nested';
+          }
+        }()),
+        sourceMap: (function() {
           var sourcemap = grunt.option('sourcemap');
-
           if(sourcemap !== undefined) {
-            return sourcemap
+            return sourcemap;
           }
           else {
             return true;
           }
-        }()),
-        cssDir: '.tmp',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%= appSettings.app %>/images',
-        fontsDir: '<%= appSettings.app %>/styles/fonts',
-        importPath: './bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
+        }())
       },
       dist: {
-        options: {
-          generatedImagesDir: '<%= appSettings.dist %>/images/generated'
-        }
-      },
-      server: {
-        options: {
-          debugInfo: true
+        files: {
+          '<%= appSettings.app %>/styles/app.css' : '<%= appSettings.app %>/styles/app.scss'
         }
       }
     },
@@ -518,13 +511,13 @@ module.exports = function (grunt) {
     */
     concurrent: {
       server: [
-        'compass:server'
+        'sass'
       ],
       test: [
-        'compass'
+        'sass'
       ],
       dist: [
-        'compass:dist',
+        'sass',
         'imagemin',
         'svgmin'
       ]

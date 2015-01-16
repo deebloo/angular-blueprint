@@ -2,7 +2,7 @@ Angular-Blueprint
 =================
 
 ***
-! Requires Node, Grunt, Bower, Sass and Compass
+! Requires Node, Grunt and Bower
 ***
 
 Angular js seed project based on John Papa's Angular style guide and the Yeoman Angular generator. The goal is to have an out of the box scaffolding that will scale well for large complex applications. I am looking for input and opinions to make this as good as we possibly can.
@@ -26,11 +26,6 @@ To start the development server
 grunt serve
 ```
 
-Start server with no sass source mapping (may compile faster)
-```bash
-grunt serve --sourcemap=false
-```
-
 To run unit tests
 ```bash
 grunt test
@@ -41,6 +36,19 @@ To build app for deployment
 grunt build
 ```
 
+If you are using the JSDOCs style of comments (which you should!!!) you can generate your automated JSDOCs by running the following command. (Horay for automated documentation)
+```JS
+grunt jsdoc
+```
+
+##Command Line Options
+Disable Source Maps
+> --sourcemap=false
+
+Compress CSS Output
+> --output-style=compressed
+
+##Proxy
 Angular Blueprint has a switch for proxying API's. To turn it on set ```appConfig.proxy = true```
 ```JS
 var appConfig = {
@@ -60,7 +68,4 @@ var appConfig = {
 };
 ```
 
-If you are using the JSDOCs style of comments (which you should!!!) you can generate your automated JSDOCs by running the following command. (Horay for automated documentation)
-```JS
-grunt jsdoc
-```
+
