@@ -316,7 +316,7 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          '<%= appSettings.app %>/styles/app.css' : '<%= appSettings.app %>/styles/app.scss'
+          '.tmp/styles/app.css' : '<%= appSettings.app %>/styles/app.scss'
         }
       }
     },
