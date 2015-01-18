@@ -498,8 +498,6 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            //'app/views/{,*/}*.html',
-            //'app/components/{,*/}*.html',
             'images/{,*/}*.{webp}',
             'fonts/{,*/}*.*',
             '.tmp/concat/scripts/templates.js'
