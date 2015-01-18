@@ -4,30 +4,31 @@
 * @description
 * Build script for the project
 */
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
-  // Configurable application
-  var appConfig = {
-    app: require('./bower.json').appPath || 'client',
-    dist: 'dist',
-    proxy: false, // Whether or not the proxy should be turned on
-    proxyConfig: [{
-      context: '/api',
-      host: 'api.github.com',
-      port: 443,
-      https: true,
-      changeOrigin: true,
-      rewrite: {
-        '^/api': ''
-      }
-    }]
-  };
+// Configurable application
+var appConfig = {
+  app: require('./bower.json').appPath || 'client',
+  dist: 'dist',
+  proxy: false, // Whether or not the proxy should be turned on
+  proxyConfig: [{
+    context: '/api',
+    host: 'api.github.com',
+    port: 443,
+    https: true,
+    changeOrigin: true,
+    rewrite: {
+      '^/api': ''
+    }
+  }]
+};
 
+module.exports = function (grunt) {
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -36,7 +37,6 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
-
     // Project settings
     appSettings: appConfig,
 
@@ -461,6 +461,28 @@ module.exports = function (grunt) {
       }
     },
 
+    ngtemplates: {
+      options: {
+        // This should be the name of your apps angular module
+        module: require('./bower.json').name || 'myApp',
+        usemin: 'scripts/scripts.js',
+        htmlmin: {
+          collapseBooleanAttributes: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true,
+          removeEmptyAttributes: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true
+        }
+      },
+      main: {
+        cwd: 'client',
+        src: ['{app,components}/**/*.html'],
+        dest: '.tmp/templates.js'
+      }
+    },
+
     /**
     * @description
     * Copies remaining files to places other tasks can use
@@ -476,10 +498,11 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            'app/views/{,*/}*.html',
-            'app/components/{,*/}*.html',
+            //'app/views/{,*/}*.html',
+            //'app/components/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/{,*/}*.*'
+            'fonts/{,*/}*.*',
+            '.tmp/concat/scripts/templates.js'
           ]
         }, {
           expand: true,
@@ -579,6 +602,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep',
     'useminPrepare',
+    'ngtemplates',
     'concurrent:dist',
     'autoprefixer',
     'concat',
