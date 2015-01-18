@@ -97,7 +97,7 @@ module.exports = function (grunt) {
     connect: {
       options: {
         port: 9000,
-        hostname: '0.0.0.0',
+        hostname: 'localhost',
         livereload: 35729
       },
       proxies: appConfig.proxy ? appConfig.proxyConfig : [],
@@ -532,6 +532,25 @@ module.exports = function (grunt) {
         configFile: '<%= appSettings.app %>/test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    /**
+    * @description
+    * Task runner for PhantomCSS - A visual regression testing tool
+    */
+    phantomcss: {
+      options: {
+        cleanupComparisonImages: true
+      },
+      test: {
+        options: {
+          screenshots: 'client/test/visual/results/baseline/',
+          results: 'client/test/visual/results'
+        },
+        src: [
+          '<%= appSettings.app %>/test/visual**/{,*/}*.visual.js',
+        ]
+      }
     }
   });
 
@@ -566,6 +585,14 @@ module.exports = function (grunt) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run(['serve:' + target]);
   });
+
+  grunt.registerTask('visual', [
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'phantomcss'
+  ]);
 
   grunt.registerTask('test', [
     'clean:server',

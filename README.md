@@ -5,12 +5,9 @@ Angular-Blueprint
 ! Requires Node, Grunt and Bower
 ***
 
-Angular js seed project based on John Papa's Angular style guide and the Yeoman Angular generator. The goal is to have an out of the box scaffolding that will scale well for large complex applications. I am looking for input and opinions to make this as good as we possibly can.
-  
-Seed includes https://github.com/drewzboto/grunt-connect-proxy to hit outside APIs for development. The proxy is set up for the github API right now but can can be configured easily to hit your own api. (Yes I know githubs api does not require this!). 
+Angular js seed project based on [John Papa's AngularJS Style Guide](https://github.com/johnpapa/angularjs-styleguide) and the [Yeoman Angular Generator](https://github.com/yeoman/generator-angular). The goal is to have an out of the box scaffolding that will scale well for large complex applications. I am looking for input and opinions to make this as good as we possibly can.
 
-Style Guide: https://github.com/johnpapa/angularjs-styleguide  
-Angular Generator: https://github.com/yeoman/generator-angular  
+Seed includes [grunt-connect-proxy](https://github.com/drewzboto/grunt-connect-proxy) to hit outside APIs for development. The proxy is set up for the github API right now but can can be configured easily to hit your own api. (Yes I know githubs api does not require this!).
 
 Download the seed
 ```bash
@@ -67,5 +64,12 @@ var appConfig = {
   }]
 };
 ```
+##Visual Regression Testing
+This project contains a [spiffy framework](https://github.com/mhoffmeyerDC/grunt-phantomcss) for visual regression testing.
+You will need to install [PhantomJS](http://phantomjs.org/download.html) and [CasperJS](http://casperjs.org/) for your respective platform (OSX, *Nix, Win32). More information on writing CasperJS tasks is available at [CasperJS Documentation](http://casperjs.readthedocs.org/en/latest/modules/casper.html).
 
+```JS
+grunt visual
+```
+Will run the CasperJS *.visual.js task files in client/test/visual. The task will generate a set of baseline screenshots for reference; subsequent runs fail if there are any visual changes. Delete the images in client/test/visual/results/baseline to reset the test after visual changes are accepted.
 
