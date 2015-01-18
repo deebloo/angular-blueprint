@@ -210,7 +210,8 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      visual: 'client/test/visual/results'
     },
 
     /**
@@ -608,13 +609,21 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
-  grunt.registerTask('visual', [
+  var visualTasks = [
     'clean:server',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
     'phantomcss'
-  ]);
+  ];
+
+  grunt.registerTask('visual',(function() {
+    if(grunt.option('clean')) {
+      visualTasks.unshift('clean:visual');
+    }
+
+    return visualTasks;
+  }()));
 
   grunt.registerTask('test', [
     'clean:server',
