@@ -97,7 +97,7 @@ module.exports = function (grunt) {
     connect: {
       options: {
         port: 9000,
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
       proxies: appConfig.proxy ? appConfig.proxyConfig : [],
