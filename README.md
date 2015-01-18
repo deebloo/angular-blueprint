@@ -72,9 +72,9 @@ You will need to install [PhantomJS](http://phantomjs.org/download.html) and [Ca
 grunt visual
 ```
 ###Command Line Options
-Remove all visual diffs and start clean
+Delete the images in client/test/visual/results/baseline to reset the test after visual changes are accepted.
 > --clean
 
 
-Will run the CasperJS `*.visual.js` task files in `client/test/visual`. The task will generate a set of baseline screenshots for reference; subsequent runs fail if there are any visual changes. Delete the images in `client/test/visual/results/baseline` to reset the test after visual changes are accepted.
+Will run the CasperJS `*.visual.js` task files in `client/test/visual`. The task will generate a set of baseline screenshots for reference; subsequent runs fail if there are any visual changes.
 
