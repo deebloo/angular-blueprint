@@ -183,7 +183,8 @@ module.exports = function (grunt) {
               '<%= appSettings.app %>/{,*/}*.js',
               '<%= appSettings.app %>/app/components**/{,*/}*.js',
               '<%= appSettings.app %>/app/services/{,*/}*.js',
-              '<%= appSettings.app %>/app/views/**/{,*/}*.js'
+              '<%= appSettings.app %>/app/views/**/{,*/}*.js',
+              '<%= appSettings.app %>/test/**/{,*/}*.js'
             ],
             options: {
                 destination: 'doc/client',
