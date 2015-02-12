@@ -574,6 +574,32 @@ module.exports = function (grunt) {
           '<%= appSettings.app %>/test/visual**/{,*/}*.visual.js',
         ]
       }
+    },
+
+    /**
+    * @description
+    * Browserify with 6to5 transforms
+    */
+    browserify: {
+        dev: {
+            files: [
+                {
+                    expand: true,
+                    cwd: "<%= publicDir %>",
+                    src: ['<%= appSettings.app %>/app/{views,components}/**/*.es6',
+            '<%= appSettings.app %>/app/services/*.js'],
+                    dest: "<%= tmpDir %>",
+                    ext: ".js"
+                }
+            ],
+
+            options: {
+                browserifyOptions: {
+                    debug: true,
+                    transform: ['6to5ify']//[es6ify.configure(/^(?!.*node_modules)+.+\.js$/)]
+                }
+            }
+        }
     }
   });
 
