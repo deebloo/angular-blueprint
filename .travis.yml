@@ -9,3 +9,6 @@ before_install:
 script:
  - grunt test
  - grunt build
+ notifications:
+   email:
+     - dannybluedesign@gmail.com
