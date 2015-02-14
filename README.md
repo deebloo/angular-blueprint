@@ -1,4 +1,4 @@
-Angular-Blueprint
+Angular-Blueprint [![Build Status](https://secure.travis-ci.org/DannyBlueDesign/angular-blueprint.png?branch=master)](https://travis-ci.org/DannyBlueDesign/angular-blueprint)
 =================
 
 ***
