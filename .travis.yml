@@ -8,6 +8,6 @@ script:
   - bower install
   - grunt test
   - grunt build
- notifications:
-   email:
-     - dannybluedesign@gmail.com
+notifications:
+  email:
+    - dannybluedesign@gmail.com
