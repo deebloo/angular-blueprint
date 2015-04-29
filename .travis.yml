@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '0.12.2'
+install:
+  - npm install
+  - npm install -g grunt-cli
+  - npm install -g bower
+script:
+  - grunt test
+  - grunt
+notifications:
+  email:
+    - dannybluedesign@gmail.com
