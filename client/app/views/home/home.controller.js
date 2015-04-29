@@ -1,15 +1,17 @@
 'use strict';
 
 /**
- * @ngdoc controller
- * @name HomeCtrl
+ * @ngdoc Controller
+ *
+ * @name MyApp.controller:HomeCtrl
+ *
  * @description
- * Controller of the myApp
+ * Controller for MyApp
  */
 (function() {
 
   angular
-    .module('myApp')
+    .module('MyApp')
     .controller('HomeCtrl', HomeCtrl);
 
   function HomeCtrl() { }

@@ -1,18 +1,17 @@
 'use strict';
 
 /**
- * @ngdoc function
+ * @ngdoc Controller
  *
- * @name myApp.controller:ApplicationCtrl
+ * @name MyApp.controller:ApplicationCtrl
  *
  * @description
- * # ApplicationCtrl
- * The main application controller for My App
+ * The main application Controller for MyApp
  */
 (function() {
 
   angular
-    .module('myApp')
+    .module('MyApp')
     .controller('ApplicationCtrl', ApplicationCtrl);
 
   function ApplicationCtrl($rootScope) {
@@ -24,6 +23,8 @@
 
     /**
      * @name stateChangeSuccess
+     *
+     * @memberof MyApp.controller:ApplicationCtrl
      *
      * @param event {Object} the event object
      *

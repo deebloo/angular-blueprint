@@ -1,5 +1,5 @@
 {
-  "name": "myApp",
+  "name": "MyApp",
   "appPath": "client",
   "version": "0.0.0",
   "dependencies": {

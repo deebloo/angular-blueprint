@@ -1,16 +1,17 @@
 'use strict';
 
 /**
- * @ngdoc factory
- * @name isActive
+ * @ngdoc Service
+ *
+ * @name MyApp.service:isActive
+ *
  * @description
- * # isActive
- * Factory in the myApp.
+ * Service for MyApp
  */
 (function() {
 
   angular
-    .module('myApp')
+    .module('MyApp')
     .factory('isActive', isActive);
 
   function isActive($location) {
@@ -18,8 +19,10 @@
 
     /**
      * @name Check Active
-     * @returns {boolean}
+     *
      * @memberof isActive
+     *
+     * @returns {boolean}
      */
     function checkActive() {
       var links    = arguments,

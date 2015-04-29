@@ -1,9 +1,9 @@
 'use strict';
 /**
-* @module Grunt
-* @description
-* Build script for the project
-*/
+ * @module Grunt
+ * @description
+ * Build script for the project
+ */
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -41,9 +41,9 @@ module.exports = function (grunt) {
     appSettings: appConfig,
 
     /**
-    * @description
-    * Watches files for changes and runs tasks based on the changed files
-    */
+     * @description
+     * Watches files for changes and runs tasks based on the changed files
+     */
     watch: {
       bower: {
         files: ['bower.json'],
@@ -92,18 +92,20 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description The actual grunt server settings
-    */
+     * @description The actual grunt server settings
+     */
     connect: {
       options: {
         port: 9000,
-        hostname: '0.0.0.0',
+        hostname: '*',
         livereload: 35729
       },
       proxies: appConfig.proxy ? appConfig.proxyConfig : [],
       livereload: {
         options: {
-          open: true,
+          open: {
+            target: 'http://localhost:9000'
+          },
           middleware: function (connect) {
             var middleware = [
               connect.static('.tmp'),
@@ -144,9 +146,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Make sure code styles are up to par and there are no obvious mistakes
-    */
+     * @description
+     * Make sure code styles are up to par and there are no obvious mistakes
+     */
     jshint: {
       options: {
         jshintrc: '.jshintrc',
@@ -158,7 +160,8 @@ module.exports = function (grunt) {
           '<%= appSettings.app %>/{,*/}*.js',
           '<%= appSettings.app %>/app/components**/{,*/}*.js',
           '<%= appSettings.app %>/app/services/{,*/}*.js',
-          '<%= appSettings.app %>/app/views/**/{,*/}*.js'
+          '<%= appSettings.app %>/app/views/**/{,*/}*.js',
+          '!<%= appSettings.app %>/app/{services,views,components}/**/*.spec.js'
         ]
       },
       test: {
@@ -170,34 +173,34 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Creates JSDoc-style documentation based on comments. Folder doc/template has customization options.
-    *
-    * @see {@link http://usejsdoc.org}
-    * @see {@link https://github.com/allenhwkim/angular-jsdoc}
-    */
+     * @description
+     * Creates JSDoc-style documentation based on comments. Folder doc/template has customization options.
+     *
+     * @see {@link http://usejsdoc.org}
+     * @see {@link https://github.com/allenhwkim/angular-jsdoc}
+     */
     jsdoc : {
-        dist : {
-            src: [
-              'Gruntfile.js',
-              '<%= appSettings.app %>/{,*/}*.js',
-              '<%= appSettings.app %>/app/components**/{,*/}*.js',
-              '<%= appSettings.app %>/app/services/{,*/}*.js',
-              '<%= appSettings.app %>/app/views/**/{,*/}*.js',
-              '<%= appSettings.app %>/test/**/{,*/}*.js'
-            ],
-            options: {
-                destination: 'doc/client',
-                configure: 'node_modules/angular-jsdoc/conf.json',
-                template: 'doc/template'
-            }
+      dist : {
+        src: [
+          'Gruntfile.js',
+          '<%= appSettings.app %>/{,*/}*.js',
+          '<%= appSettings.app %>/app/components**/{,*/}*.js',
+          '<%= appSettings.app %>/app/services/{,*/}*.js',
+          '<%= appSettings.app %>/app/views/**/{,*/}*.js',
+          '<%= appSettings.app %>/test/**/{,*/}*.js'
+        ],
+        options: {
+          destination: 'doc/client',
+          configure: 'node_modules/angular-jsdoc/conf.json',
+          template: 'doc/template'
         }
+      }
     },
 
     /**
-    * @description
-    * Empties folders to start fresh
-    */
+     * @description
+     * Empties folders to start fresh
+     */
     clean: {
       dist: {
         files: [{
@@ -215,9 +218,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Add vendor prefixed styles
-    */
+     * @description
+     * Add vendor prefixed styles
+     */
     autoprefixer: {
       options: {
         browsers: ['last 1 version']
@@ -233,9 +236,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Automatically inject Bower components into the app
-    */
+     * @description
+     * Automatically inject Bower components into the app
+     */
     wiredep: {
       app: {
         src: ['<%= appSettings.app %>/index.html'],
@@ -264,8 +267,13 @@ module.exports = function (grunt) {
         },
         files: {
           '<%= appSettings.app %>/index.html': [
-            '<%= appSettings.app %>/app/{views,components}/**/*.js',
-            '<%= appSettings.app %>/app/services/*.js'
+            [
+              '{.tmp,<%= appSettings.app %>}/app/templates.js',
+              '{.tmp,<%= appSettings.app %>}/{app,components,services}/**/*.js',
+              '!{.tmp,<%= appSettings.app %>}/app/app.js',
+              '!{.tmp,<%= appSettings.app %>}/{app,components,services}/**/*.spec.js',
+              '!{.tmp,<%= appSettings.app %>}/{app,components,services}/**/*.mock.js'
+            ]
           ]
         }
       },
@@ -290,10 +298,10 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Compiles Sass to CSS and generates necessary files if requested
-    * @property {String} [outputStyle] - nested or compressed default value is nested
-    */
+     * @description
+     * Compiles Sass to CSS and generates necessary files if requested
+     * @property {String} [outputStyle] - nested or compressed default value is nested
+     */
     sass: {
       options: {
         imagePath: '<%= appSettings.app %>/images',
@@ -324,9 +332,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Renames files for browser caching purposes
-    */
+     * @description
+     * Renames files for browser caching purposes
+     */
     filerev: {
       dist: {
         src: [
@@ -339,11 +347,11 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Reads HTML for usemin blocks to enable smart builds that automatically
-    * concat, minify and revision files. Creates configurations in memory so
-    * additional tasks can operate on them.
-    */
+     * @description
+     * Reads HTML for usemin blocks to enable smart builds that automatically
+     * concat, minify and revision files. Creates configurations in memory so
+     * additional tasks can operate on them.
+     */
     useminPrepare: {
       html: '<%= appSettings.app %>/index.html',
       options: {
@@ -361,9 +369,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Performs rewrites based on filerev and the useminPrepare configuration
-    */
+     * @description
+     * Performs rewrites based on filerev and the useminPrepare configuration
+     */
     usemin: {
       html: ['<%= appSettings.dist %>/{,*/}*.html'],
       css: ['<%= appSettings.dist %>/styles/{,*/}*.css'],
@@ -439,9 +447,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * ng-annotate tries to make the code safe for minification automatically by using the Angular long form for dependency injection.
-    */
+     * @description
+     * ng-annotate tries to make the code safe for minification automatically by using the Angular long form for dependency injection.
+     */
     ngAnnotate: {
       dist: {
         files: [{
@@ -454,9 +462,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Replace Google CDN references
-    */
+     * @description
+     * Replace Google CDN references
+     */
     cdnify: {
       dist: {
         html: ['<%= appSettings.dist %>/*.html']
@@ -486,9 +494,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Copies remaining files to places other tasks can use
-    */
+     * @description
+     * Copies remaining files to places other tasks can use
+     */
     copy: {
       dist: {
         files: [{
@@ -529,9 +537,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Run some tasks in parallel to speed up the build process
-    */
+     * @description
+     * Run some tasks in parallel to speed up the build process
+     */
     concurrent: {
       server: [
         'sass'
@@ -547,9 +555,9 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Unit Test settings
-    */
+     * @description
+     * Unit Test settings
+     */
     karma: {
       unit: {
         configFile: '<%= appSettings.app %>/test/karma.conf.js',
@@ -558,23 +566,23 @@ module.exports = function (grunt) {
     },
 
     /**
-    * @description
-    * Task runner for PhantomCSS - A visual regression testing tool
-    */
-    phantomcss: {
-      options: {
-        cleanupComparisonImages: true
-      },
-      test: {
-        options: {
-          screenshots: 'client/test/visual/results/baseline/',
-          results: 'client/test/visual/results'
-        },
-        src: [
-          '<%= appSettings.app %>/test/visual**/{,*/}*.visual.js',
-        ]
-      }
-    }
+     * @description
+     * Task runner for PhantomCSS - A visual regression testing tool
+     */
+    //phantomcss: {
+    //  options: {
+    //    cleanupComparisonImages: true
+    //  },
+    //  test: {
+    //    options: {
+    //      screenshots: 'client/test/visual/results/baseline/',
+    //      results: 'client/test/visual/results'
+    //    },
+    //    src: [
+    //      '<%= appSettings.app %>/test/visual**/{,*/}*.visual.js',
+    //    ]
+    //  }
+    //}
   });
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
@@ -609,21 +617,21 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
-  var visualTasks = [
-    'clean:server',
-    'concurrent:test',
-    'autoprefixer',
-    'connect:test',
-    'phantomcss'
-  ];
-
-  grunt.registerTask('visual',(function() {
-    if(grunt.option('clean')) {
-      visualTasks.unshift('clean:visual');
-    }
-
-    return visualTasks;
-  }()));
+  //var visualTasks = [
+  //  'clean:server',
+  //  'concurrent:test',
+  //  'autoprefixer',
+  //  'connect:test',
+  //  'phantomcss'
+  //];
+  //
+  //grunt.registerTask('visual',(function() {
+  //  if(grunt.option('clean')) {
+  //    visualTasks.unshift('clean:visual');
+  //  }
+  //
+  //  return visualTasks;
+  //}()));
 
   grunt.registerTask('test', [
     'clean:server',

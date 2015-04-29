@@ -1,15 +1,17 @@
 'use strict';
 
 /**
- * @ngdoc controller
- * @name MainCtrl
+ * @ngdoc Controller
+ *
+ * @name MyApp.controller:MainCtrl
+ *
  * @description
- * Controller of the myApp
+ * Controller for MyApp
  */
 (function() {
 
   angular
-    .module('myApp')
+    .module('MyApp')
     .controller('MainCtrl', MainCtrl);
 
   function MainCtrl(isActive) {

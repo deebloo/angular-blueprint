@@ -1,26 +1,22 @@
 'use strict';
 
 /**
- * @ngdoc controller
- * @name AboutCtrl
+ * @ngdoc Controller
+ *
+ * @name MyApp.controller:AboutCtrl
+ *
  * @description
- * Controller of the myApp
+ * Controller for MyApp
  */
 (function() {
 
   angular
-    .module('myApp')
+    .module('MyApp')
     .controller('AboutCtrl', AboutCtrl);
 
   function AboutCtrl() {
     var vm = this;
 
-    /**
-    * @description
-    * A list of awesome things.
-    * @type string[]
-    * @memberof AboutCtrl
-    */ 
     vm.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

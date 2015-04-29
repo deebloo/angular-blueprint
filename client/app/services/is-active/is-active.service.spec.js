@@ -3,7 +3,7 @@
 describe('Service: isActive', function () {
 
   // load the service's module
-  beforeEach(module('myApp'));
+  beforeEach(module('MyApp'));
 
   // instantiate service
   var isActive, $location;
