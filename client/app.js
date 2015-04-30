@@ -1,13 +1,9 @@
 'use strict';
 
-/**
- * @module MyApp
- *
- * @description
- * Main module of the application.
- */
+var moduleName = 'MyApp';
+
 angular
-  .module('MyApp', [
+  .module(moduleName, [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -22,3 +18,5 @@ angular
 
     $urlRouterProvider.otherwise('/'); // redirect to root if state is not found
   });
+
+module.exports = moduleName;

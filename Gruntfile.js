@@ -564,6 +564,16 @@ module.exports = function (grunt) {
         singleRun: true
       }
     },
+    browserify: {
+      dist: {
+        files: {
+          '.tmp/module.js': ['client/app.js']
+        },
+        options: {
+          transform: ['babelify']
+        }
+      }
+    }
 
     /**
      * @description
@@ -593,6 +603,7 @@ module.exports = function (grunt) {
       'injector:scripts',
       'concurrent:server',
       'autoprefixer',
+      'browserify',
       'connect:livereload',
       'watch'
     ];

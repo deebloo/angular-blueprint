@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "devDependencies": {
     "angular-jsdoc": "~0.3.0",
+    "babelify": "^6.0.2",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
     "grunt-asset-injector": "^0.1.0",
     "grunt-autoprefixer": "^2.2.0",
+    "grunt-browserify": "^3.7.0",
     "grunt-cli": "^0.1.13",
     "grunt-concurrent": "^1.0.0",
     "grunt-connect-proxy": "^0.2.0",
