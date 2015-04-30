@@ -6,6 +6,7 @@ Prerequisites
 npm install -g bower
 npm install -g yo
 (optional) npm install -g grunt-cli
+```
 
 Angular js seed project based on [John Papa's AngularJS Style Guide](https://github.com/johnpapa/angularjs-styleguide) and the [Yeoman Angular Generator](https://github.com/yeoman/generator-angular). The goal is to have an out of the box scaffolding that will scale well for large complex applications. I am looking for input and opinions to make this as good as we possibly can.
 
