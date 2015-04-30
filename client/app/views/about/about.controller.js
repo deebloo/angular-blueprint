@@ -1,27 +1,11 @@
 'use strict';
 
-/**
- * @ngdoc Controller
- *
- * @name MyApp.controller:AboutCtrl
- *
- * @description
- * Controller for MyApp
- */
-(function() {
+function AboutCtrl() {
+  var vm = this;
 
-  angular
-    .module('MyApp')
-    .controller('AboutCtrl', AboutCtrl);
+  vm.foo = 'bar';
+}
 
-  function AboutCtrl() {
-    var vm = this;
+AboutCtrl.$inject = [];
 
-    vm.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  }
-
-}());
+export default AboutCtrl;

@@ -1,19 +1,12 @@
 'use strict';
 
-/**
- * @ngdoc Controller
- *
- * @name MyApp.controller:HomeCtrl
- *
- * @description
- * Controller for MyApp
- */
-(function() {
+class HomeCtrl {
+  constructor() {
+    this.user = { username: 'Danny Blue'};
+  }
+}
 
-  angular
-    .module('MyApp')
-    .controller('HomeCtrl', HomeCtrl);
+HomeCtrl.$inject = [];
 
-  function HomeCtrl() { }
+export default HomeCtrl;
 
-}());

@@ -1,25 +1,13 @@
 'use strict';
 
-/**
- * @ngdoc Controller
- *
- * @name MyApp.controller:MainCtrl
- *
- * @description
- * Controller for MyApp
- */
-(function() {
+class MainCtrl {
+  constructor(isActive) {
+    this.isActive = isActive;
 
-  angular
-    .module('MyApp')
-    .controller('MainCtrl', MainCtrl);
-
-  function MainCtrl(isActive) {
-    var vm = this;
-
-    vm.user = { username: 'USER'};
-
-    vm.isActive = isActive;
+    console.log(this.isActive);
   }
+}
 
-}());
+MainCtrl.$inject = ['isActive'];
+
+export default MainCtrl;
