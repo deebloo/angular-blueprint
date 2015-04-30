@@ -42,6 +42,10 @@ var componentFiles = [
   '{.tmp,<%= appSettings.app %>}/app/components/**/*.route.js'
 ];
 
+var controllerFiles = [
+  '{.tmp,<%= appSettings.app %>}/app/views/**/*.route.js'
+];
+
 var _ = require('lodash');
 
 module.exports = function (grunt) {
@@ -362,16 +366,48 @@ module.exports = function (grunt) {
         options: {
           transform: function (filePath) {
             var splitPath = filePath.split('.')[0].split('/'),
-              file = splitPath[splitPath.length - 1],
-              serviceName = _.camelCase(file);
+                file = splitPath[splitPath.length - 1],
+                serviceName = _.camelCase(file);
 
             return 'components.directive(\'' + serviceName + '\', ' + serviceName + ');';
           },
-          starttag: '// START-attach-component',
-          endtag: '// END-attach-component'
+          starttag: '// START-attach-components',
+          endtag: '// END-attach-components'
         },
         files: {
           '<%= appSettings.app %>/app/components/index.js': [componentFiles]
+        }
+      },
+      importControllers: {
+        options: {
+          transform: function (filePath) {
+            var splitPath = filePath.split('.')[0].split('/'),
+                file = splitPath[splitPath.length - 1],
+                controllerName = _.capitalize(_.camelCase(file)) + 'Ctrl';
+
+            return 'import ' + controllerName + ' from ' + '\'./' + file + '/' + file + '.controller\';';
+          },
+          starttag: '// START-import-controllers',
+          endtag: '// END-import-controllers'
+        },
+        files: {
+          '<%= appSettings.app %>/app/views/index.js': [controllerFiles]
+        }
+      },
+      attachControllers: {
+        options: {
+          transform: function (filePath) {
+            var splitPath = filePath.split('.')[0].split('/'),
+                file = splitPath[splitPath.length - 1],
+                controllerName = _.capitalize(_.camelCase(file)) + 'Ctrl';
+
+            return 'controllers.controller(\'' + controllerName + '\', ' + controllerName + ');';
+          },
+          starttag: '// START-attach-controllers',
+          endtag: '// END-attach-controllers'
+        },
+        files: {
+          '<%= appSettings.app %>/app/views/index.js': [controllerFiles]
         }
       },
       scripts: {
@@ -687,6 +723,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer',
       'browserify',
+      'ngtemplates',
       'connect:livereload',
       'watch'
     ];
@@ -720,6 +757,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep',
     'useminPrepare',
+    'browserify',
     'ngtemplates',
     'concurrent:dist',
     'autoprefixer',
@@ -732,7 +770,7 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin',
-    'jsdoc'
+    //'jsdoc'
   ]);
 
   grunt.registerTask('default', [
