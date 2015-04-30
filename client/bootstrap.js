@@ -1,3 +1,3 @@
-import moduleName from './app/index';
+import moduleName from './app/';
 
 angular.bootstrap(document, [moduleName]);

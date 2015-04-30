@@ -1,9 +1,9 @@
 'use strict';
 
-function AboutCtrl() {
-  var vm = this;
-
-  vm.foo = 'bar';
+class AboutCtrl {
+  constructor() {
+    this.awesomeThings = ['foo', 'bar', 'baz'];
+  }
 }
 
 AboutCtrl.$inject = [];

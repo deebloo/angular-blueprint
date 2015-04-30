@@ -1,0 +1,35 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/Users/dblue/.nvm/v0.10.36/bin/npm', 'start', 'test' ]
+2 info using npm@2.5.1
+3 info using node@v0.10.36
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart MyApp@0.0.0
+6 info start MyApp@0.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info MyApp@0.0.0 Failed to exec start script
+9 verbose stack Error: MyApp@0.0.0 start: `node ./node_modules/grunt-cli/bin/grunt $* test`
+9 verbose stack Exit status 3
+9 verbose stack     at EventEmitter.<anonymous> (/Users/dblue/.nvm/v0.10.36/lib/node_modules/npm/lib/utils/lifecycle.js:213:16)
+9 verbose stack     at EventEmitter.emit (events.js:98:17)
+9 verbose stack     at ChildProcess.<anonymous> (/Users/dblue/.nvm/v0.10.36/lib/node_modules/npm/lib/utils/spawn.js:14:12)
+9 verbose stack     at ChildProcess.emit (events.js:98:17)
+9 verbose stack     at maybeClose (child_process.js:766:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:833:5)
+10 verbose pkgid MyApp@0.0.0
+11 verbose cwd /Users/dblue/Documents/projects/angular-blueprint
+12 error Darwin 14.3.0
+13 error argv "node" "/Users/dblue/.nvm/v0.10.36/bin/npm" "start" "test"
+14 error node v0.10.36
+15 error npm  v2.5.1
+16 error code ELIFECYCLE
+17 error MyApp@0.0.0 start: `node ./node_modules/grunt-cli/bin/grunt $* test`
+17 error Exit status 3
+18 error Failed at the MyApp@0.0.0 start script 'node ./node_modules/grunt-cli/bin/grunt $* test'.
+18 error This is most likely a problem with the MyApp package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     node ./node_modules/grunt-cli/bin/grunt $* test
+18 error You can get their info via:
+18 error     npm owner ls MyApp
+18 error There is likely additional logging output above.
+19 verbose exit [ 1, true ]

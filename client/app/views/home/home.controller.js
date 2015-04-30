@@ -2,7 +2,7 @@
 
 class HomeCtrl {
   constructor() {
-    this.user = { username: 'Danny Blue'};
+    this.user = { username: 'USER'};
   }
 }
 

@@ -28,6 +28,22 @@ var appConfig = {
   }]
 };
 
+var servicesFiles = [
+  '{.tmp,<%= appSettings.app %>}/app/services/**/*.js',
+  '!<%= appSettings.app %>/app/services/index.js',
+  '!{.tmp,<%= appSettings.app %>}/app/services/**/*.spec.js'
+];
+
+var routeFiles = [
+  '{.tmp,<%= appSettings.app %>}/app/views/**/*.route.js'
+];
+
+var componentFiles = [
+  '{.tmp,<%= appSettings.app %>}/app/components/**/*.route.js'
+];
+
+var _ = require('lodash');
+
 module.exports = function (grunt) {
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
@@ -56,7 +72,7 @@ module.exports = function (grunt) {
           '<%= appSettings.app %>/app/views/**/*.js',
           '<%= appSettings.app %>/app/services/{,*/}*.js'
         ],
-        tasks: ['browserify'],
+        tasks: ['browserify']
       },
       js: {
         files: [
@@ -65,7 +81,7 @@ module.exports = function (grunt) {
           '<%= appSettings.app %>/app/views/**/*.js',
           '<%= appSettings.app %>/app/services/{,*/}*.js'
         ],
-        tasks: ['newer:jshint:all', 'injector:scripts'],
+        tasks: ['newer:jshint:all', 'injector'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -264,6 +280,100 @@ module.exports = function (grunt) {
 
       },
       //Inject application script files into index.html (doesn't include bower)
+      importServices: {
+        options: {
+          transform: function (filePath) {
+            var splitPath = filePath.split('.')[0].split('/'),
+                file = splitPath[splitPath.length - 1],
+                serviceName = _.camelCase(file);
+
+            return 'import ' + serviceName + ' from ' + '\'./' + file + '/' + file + '.service\';';
+          },
+          starttag: '// START-import-services',
+          endtag: '// END-import-services'
+        },
+        files: {
+          '<%= appSettings.app %>/app/services/index.js': [servicesFiles]
+        }
+      },
+      attachServices: {
+        options: {
+          transform: function (filePath) {
+            var splitPath = filePath.split('.')[0].split('/'),
+                file = splitPath[splitPath.length - 1],
+                serviceName = _.camelCase(file);
+
+            return 'services.factory(\'' + serviceName + '\', ' + serviceName + ');';
+          },
+          starttag: '// START-attach-services',
+          endtag: '// END-attach-services'
+        },
+        files: {
+          '<%= appSettings.app %>/app/services/index.js': [servicesFiles]
+        }
+      },
+      importRoutes: {
+        options: {
+          transform: function (filePath) {
+            var splitPath = filePath.split('.')[0].split('/'),
+                file = splitPath[splitPath.length - 1];
+
+            return 'import ' + file + 'Route from ' + '\'./views/' + file + '/' + file + '.route\';';
+          },
+          starttag: '// START-import-routes',
+          endtag: '// END-import-routes'
+        },
+        files: {
+          '<%= appSettings.app %>/app/config.js': [routeFiles]
+        }
+      },
+      attachRoutes: {
+        options: {
+          transform: function (filePath) {
+            var splitPath = filePath.split('.')[0].split('/'),
+                file = splitPath[splitPath.length - 1];
+
+            return file + 'Route($stateProvider);';
+          },
+          starttag: '// START-attach-routes',
+          endtag: '// END-attach-routes'
+        },
+        files: {
+          '<%= appSettings.app %>/app/config.js': [routeFiles]
+        }
+      },
+      importComponents: {
+        options: {
+          transform: function (filePath) {
+            var splitPath = filePath.split('.')[0].split('/'),
+              file = splitPath[splitPath.length - 1],
+              serviceName = _.camelCase(file);
+
+            return 'import ' + serviceName + ' from ' + '\'./' + file + '/' + file + '.directive\';';
+          },
+          starttag: '// START-import-components',
+          endtag: '// END-import-components'
+        },
+        files: {
+          '<%= appSettings.app %>/app/components/index.js': [componentFiles]
+        }
+      },
+      attachComponents: {
+        options: {
+          transform: function (filePath) {
+            var splitPath = filePath.split('.')[0].split('/'),
+              file = splitPath[splitPath.length - 1],
+              serviceName = _.camelCase(file);
+
+            return 'components.directive(\'' + serviceName + '\', ' + serviceName + ');';
+          },
+          starttag: '// START-attach-component',
+          endtag: '// END-attach-component'
+        },
+        files: {
+          '<%= appSettings.app %>/app/components/index.js': [componentFiles]
+        }
+      },
       scripts: {
         options: {
           transform: function(filePath) {
@@ -316,6 +426,7 @@ module.exports = function (grunt) {
         imagePath: '<%= appSettings.app %>/images',
         outputStyle: (function() {
           var outputStyle = grunt.option('output-style');
+
           if(outputStyle !== undefined) {
             return outputStyle;
           }
@@ -325,6 +436,7 @@ module.exports = function (grunt) {
         }()),
         sourceMap: (function() {
           var sourcemap = grunt.option('sourcemap');
+
           if(sourcemap !== undefined) {
             return sourcemap;
           }
@@ -388,32 +500,6 @@ module.exports = function (grunt) {
         assetsDirs: ['<%= appSettings.dist %>','<%= appSettings.dist %>/images']
       }
     },
-
-    // The following *-min tasks will produce minified files in the dist folder
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
-    // minification. These next options are pre-configured if you do not wish
-    // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= appSettings.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= appSettings.dist %>/scripts/scripts.js': [
-    //         '<%= appSettings.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
 
     imagemin: {
       dist: {
@@ -583,6 +669,9 @@ module.exports = function (grunt) {
           '.tmp/module.js': ['client/bootstrap.js']
         },
         options: {
+          browserifyOptions: {
+            debug: true
+          },
           transform: ['babelify']
         }
       }
@@ -593,8 +682,8 @@ module.exports = function (grunt) {
     var tasks = [
       'clean:server',
       'wiredep',
-      'injector:sass',
-      'injector:scripts',
+      'injector',
+      'injector',
       'concurrent:server',
       'autoprefixer',
       'browserify',
@@ -620,6 +709,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'browserify',
     'concurrent:test',
     'autoprefixer',
     'connect:test',

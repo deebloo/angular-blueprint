@@ -3,8 +3,6 @@
 class MainCtrl {
   constructor(isActive) {
     this.isActive = isActive;
-
-    console.log(this.isActive);
   }
 }
 

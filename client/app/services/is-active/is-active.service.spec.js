@@ -15,6 +15,7 @@ describe('Service: isActive', function () {
   }));
 
   it('isActive should return true', function() {
+
     $location.path('/');
 
     expect(isActive('/' , '/test')).toBe(true);

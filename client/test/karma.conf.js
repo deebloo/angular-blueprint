@@ -28,11 +28,10 @@ module.exports = function(config) {
       '../bower_components/angular-ui-router/release/angular-ui-router.js',
       '../bower_components/angular-sanitize/angular-sanitize.js',
       '../bower_components/angular-touch/angular-touch.js',
-      '*.js',
-      'app/components/**/*.js',
-      'app/views/**/*.js',
-      'app/services/**/*.js',
-      //'test/mock/**/*.js',
+      '../.tmp/module.js',
+      'app/components/**/*.spec.js',
+      'app/views/**/*.spec.js',
+      'app/services/**/*.spec.js'
     ],
 
     // list of files / patterns to exclude
