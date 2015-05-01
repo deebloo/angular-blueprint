@@ -29,21 +29,19 @@ var appConfig = {
 };
 
 var servicesFiles = [
-  '{.tmp,<%= appSettings.app %>}/app/services/**/*.js',
-  '!<%= appSettings.app %>/app/services/index.js',
-  '!{.tmp,<%= appSettings.app %>}/app/services/**/*.spec.js'
+  '{.tmp,<%= appSettings.app %>}/app/services/{,*/}*.service.js'
 ];
 
 var routeFiles = [
-  '{.tmp,<%= appSettings.app %>}/app/views/**/*.route.js'
+  '{.tmp,<%= appSettings.app %>}/app/views/{,*/}*.route.js'
 ];
 
 var componentFiles = [
-  '{.tmp,<%= appSettings.app %>}/app/components/**/*.route.js'
+  '{.tmp,<%= appSettings.app %>}/app/components/{,*/}*.directive.js'
 ];
 
 var controllerFiles = [
-  '{.tmp,<%= appSettings.app %>}/app/views/**/*.route.js'
+  '{.tmp,<%= appSettings.app %>}/app/views/{,*/}*.controller.js'
 ];
 
 var _ = require('lodash');
@@ -769,7 +767,7 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin',
+    'htmlmin'
     //'jsdoc'
   ]);
 

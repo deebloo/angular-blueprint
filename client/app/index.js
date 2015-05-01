@@ -8,6 +8,9 @@ import views from './views/';
 var moduleName = 'MyApp';
 
 angular.module(moduleName, [
+  services,
+  components,
+  views,
   'ngAnimate',
   'ngAria',
   'ngCookies',
@@ -15,10 +18,7 @@ angular.module(moduleName, [
   'ngResource',
   'ui.router',
   'ngSanitize',
-  'ngTouch',
-  services,
-  components,
-  views
+  'ngTouch'
 ]).config(config);
 
 export default moduleName;
