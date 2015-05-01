@@ -1,6 +1,4 @@
-/**
- * THIS FILE IS DYNAMICALLY MODIFIED. ADJUST AT YOUR OWN RISK
- */
+/* THIS FILE IS DYNAMICALLY MODIFIED. ADJUST AT YOUR OWN RISK */
 
 // START-import-services
 import isActive from './is-active/is-active.service';

@@ -2,7 +2,9 @@
 
 class MainCtrl {
   constructor(isActive) {
-    this.isActive = isActive;
+    var vm = this;
+
+    vm.isActive = isActive;
   }
 }
 
