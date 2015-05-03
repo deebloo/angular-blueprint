@@ -3,7 +3,7 @@
 (function() {
 
   angular
-    .module('MyApp')
+    .module('angularBlueprint')
     .config(function ($stateProvider) {
       $stateProvider
         .state('main.home', {

@@ -3,15 +3,15 @@
 /**
  * @ngdoc Service
  *
- * @name MyApp.service:isActive
+ * @name angularBlueprint.service:isActive
  *
  * @description
- * Service for MyApp
+ * Service for angularBlueprint
  */
 (function() {
 
   angular
-    .module('MyApp')
+    .module('angularBlueprint')
     .factory('isActive', isActive);
 
   function isActive($location) {

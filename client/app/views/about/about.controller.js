@@ -3,15 +3,15 @@
 /**
  * @ngdoc Controller
  *
- * @name MyApp.controller:AboutCtrl
+ * @name angularBlueprint.controller:AboutCtrl
  *
  * @description
- * Controller for MyApp
+ * Controller for angularBlueprint
  */
 (function() {
 
   angular
-    .module('MyApp')
+    .module('angularBlueprint')
     .controller('AboutCtrl', AboutCtrl);
 
   function AboutCtrl() {

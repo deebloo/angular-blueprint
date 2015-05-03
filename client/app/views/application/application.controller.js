@@ -3,15 +3,15 @@
 /**
  * @ngdoc Controller
  *
- * @name MyApp.controller:ApplicationCtrl
+ * @name angularBlueprint.controller:ApplicationCtrl
  *
  * @description
- * The main application Controller for MyApp
+ * The main application Controller for angularBlueprint
  */
 (function() {
 
   angular
-    .module('MyApp')
+    .module('angularBlueprint')
     .controller('ApplicationCtrl', ApplicationCtrl);
 
   function ApplicationCtrl($rootScope) {
@@ -24,7 +24,7 @@
     /**
      * @name stateChangeSuccess
      *
-     * @memberof MyApp.controller:ApplicationCtrl
+     * @memberof angularBlueprint.controller:ApplicationCtrl
      *
      * @param event {Object} the event object
      *

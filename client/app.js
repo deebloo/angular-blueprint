@@ -1,13 +1,13 @@
 'use strict';
 
 /**
- * @module MyApp
+ * @module angularBlueprint
  *
  * @description
  * Main module of the application.
  */
 angular
-  .module('MyApp', [
+  .module('angularBlueprint', [
     'ngAnimate',
     'ngAria',
     'ngCookies',

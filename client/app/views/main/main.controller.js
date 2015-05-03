@@ -3,15 +3,15 @@
 /**
  * @ngdoc Controller
  *
- * @name MyApp.controller:MainCtrl
+ * @name angularBlueprint.controller:MainCtrl
  *
  * @description
- * Controller for MyApp
+ * Controller for angularBlueprint
  */
 (function() {
 
   angular
-    .module('MyApp')
+    .module('angularBlueprint')
     .controller('MainCtrl', MainCtrl);
 
   function MainCtrl(isActive) {

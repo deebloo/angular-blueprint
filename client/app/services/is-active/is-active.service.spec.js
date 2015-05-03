@@ -3,7 +3,7 @@
 describe('Service: isActive', function () {
 
   // load the service's module
-  beforeEach(module('MyApp'));
+  beforeEach(module('angularBlueprint'));
 
   // instantiate service
   var isActive, $location;

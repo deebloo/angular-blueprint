@@ -3,15 +3,15 @@
 /**
  * @ngdoc Controller
  *
- * @name MyApp.controller:HomeCtrl
+ * @name angularBlueprint.controller:HomeCtrl
  *
  * @description
- * Controller for MyApp
+ * Controller for angularBlueprint
  */
 (function() {
 
   angular
-    .module('MyApp')
+    .module('angularBlueprint')
     .controller('HomeCtrl', HomeCtrl);
 
   function HomeCtrl() { }
