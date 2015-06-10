@@ -3,7 +3,7 @@
 /**
  * @ngdoc Controller
  *
- * @name angularBlueprint.controller:ApplicationCtrl
+ * @name angularBlueprint.controller:AppCtrl
  *
  * @description
  * The main application Controller for angularBlueprint
@@ -12,9 +12,9 @@
 
   angular
     .module('angularBlueprint')
-    .controller('ApplicationCtrl', ApplicationCtrl);
+    .controller('AppCtrl', AppCtrl);
 
-  function ApplicationCtrl($rootScope) {
+  function AppCtrl($rootScope) {
     var vm = this;
 
     vm.title = 'My App'; // Default Title

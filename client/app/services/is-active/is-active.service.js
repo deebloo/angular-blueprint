@@ -15,16 +15,7 @@
     .factory('isActive', isActive);
 
   function isActive($location) {
-    return checkActive;
-
-    /**
-     * @name Check Active
-     *
-     * @memberof isActive
-     *
-     * @returns {boolean}
-     */
-    function checkActive() {
+    return function checkActive() {
       var links    = arguments,
           isActive = false;
 
@@ -37,7 +28,7 @@
       }
 
       return isActive;
-    }
+    };
   }
 
 }());
