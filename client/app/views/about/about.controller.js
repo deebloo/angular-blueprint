@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * @ngdoc Controller
+ * @ngdoc controller
  *
- * @name angularBlueprint.controller:AboutCtrl
+ * @name AboutCtrl
  *
  * @description
  * Controller for angularBlueprint
@@ -24,4 +24,4 @@
     ];
   }
 
-}());
+})();

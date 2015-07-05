@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * @ngdoc Controller
+ * @ngdoc controller
  *
- * @name angularBlueprint.controller:AppCtrl
+ * @name AppCtrl
  *
  * @description
  * The main application Controller for angularBlueprint
@@ -24,15 +24,14 @@
     /**
      * @name stateChangeSuccess
      *
-     * @memberof angularBlueprint.controller:ApplicationCtrl
+     * @memberof AppCtrl
      *
-     * @param event {Object} the event object
-     *
-     * @param newState {Object} the new state object
+     * @param {Object} event - the event object
+     * @param {Object} newState - the new state object
      */
     function stateChangeSuccess(event, newState) {
       vm.title = newState.title;
     }
   }
 
-}());
+})();

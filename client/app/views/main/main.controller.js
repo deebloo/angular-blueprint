@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * @ngdoc Controller
+ * @ngdoc controller
  *
- * @name angularBlueprint.controller:MainCtrl
+ * @name MainCtrl
  *
  * @description
  * Controller for angularBlueprint
@@ -22,4 +22,4 @@
     vm.isActive = isActive;
   }
 
-}());
+})();

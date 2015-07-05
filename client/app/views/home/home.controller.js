@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * @ngdoc Controller
+ * @ngdoc controller
  *
- * @name angularBlueprint.controller:HomeCtrl
+ * @name HomeCtrl
  *
  * @description
  * Controller for angularBlueprint
@@ -16,4 +16,4 @@
 
   function HomeCtrl() { }
 
-}());
+})();
