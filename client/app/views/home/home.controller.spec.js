@@ -12,8 +12,8 @@ describe('Controller: HomeCtrl', function () {
     HomeCtrl = $injector.get('$controller')('HomeCtrl');
   }));
 
-  it('User login value should set', function () {
-    expect(HomeCtrl.user.username).toBe('USER');
+  it('should attach a list of awesomeThings to the scope', function () {
+
   });
 
 });

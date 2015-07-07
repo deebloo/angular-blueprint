@@ -2,6 +2,7 @@
 
 // START-import-controllers
 import AboutCtrl from './about/about.controller';
+import AppCtrl from './app/app.controller';
 import HomeCtrl from './home/home.controller';
 import MainCtrl from './main/main.controller';
 // END-import-controllers
@@ -11,6 +12,7 @@ var moduleName  = 'MyApp.controllers',
 
 // START-attach-controllers
 controllers.controller('AboutCtrl', AboutCtrl);
+controllers.controller('AppCtrl', AppCtrl);
 controllers.controller('HomeCtrl', HomeCtrl);
 controllers.controller('MainCtrl', MainCtrl);
 // END-attach-controllers

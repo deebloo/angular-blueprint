@@ -12,8 +12,8 @@ describe('Controller: MainCtrl', function () {
     MainCtrl = $injector.get('$controller')('MainCtrl');
   }));
 
-  it('should be true', function () {
-    expect(true).toBe(true);
+  it('User login value should set', function () {
+
   });
 
 });

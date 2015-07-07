@@ -14,8 +14,6 @@ angular.module(moduleName, [
   'ngAnimate',
   'ngAria',
   'ngCookies',
-  'ngMessages',
-  'ngResource',
   'ui.router',
   'ngSanitize',
   'ngTouch'
