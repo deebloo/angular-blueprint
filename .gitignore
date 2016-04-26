@@ -6,5 +6,6 @@ bower_components
 .idea
 doc/client
 client/test/visual/results
+dev/
 .DS_Store
 ._.DS_Store
